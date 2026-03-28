@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option java_package = "com.bookling_service.grpc";
+option java_outer_classname = "NotificationProto";
+option java_multiple_files = true;
+
+package notification;
+
+service NotificationGrpcService {
+  rpc SendNotification(NotificationRequest) returns (NotificationResponse);
+}
+
+message NotificationRequest {
+  string userId  = 1;
+  string message = 2;
+  string ip      = 3;
+}
+
+message NotificationResponse {
+  bool success = 1;
+}
+
