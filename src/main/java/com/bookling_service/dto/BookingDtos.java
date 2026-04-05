@@ -28,7 +28,6 @@ public class BookingDtos {
 
     @Data
     public static class BookingResponse {
-        private String id;
         private String bookingId;
         private String tripId;
         private String userId;
@@ -38,7 +37,6 @@ public class BookingDtos {
         private String createdAt;
 
         public BookingResponse(Booking b, com.fasterxml.jackson.databind.ObjectMapper mapper) {
-            this.id        = b.getId();
             this.bookingId = b.getBookingId();
             this.tripId    = b.getTripId();
             this.userId    = b.getUserId();

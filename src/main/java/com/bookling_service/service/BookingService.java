@@ -49,7 +49,7 @@ public class BookingService {
         }
 
         Booking saved = bookingRepository.save(booking);
-        log.info("Booking completed: id={} bookingId={} tripId={}", saved.getId(), saved.getBookingId(), saved.getTripId());
+        log.info("Booking completed: bookingId={} tripId={}", saved.getBookingId(), saved.getTripId());
 
         String message = String.format("Your booking (itinerary %s) has been confirmed for trip %s",
                 saved.getBookingId(), saved.getTripId());
