@@ -19,17 +19,16 @@ public class BookingController {
 
     private final BookingService bookingService;
 
-    // POST /api/bookings
-    @PostMapping
-    public ResponseEntity<BookingDtos.BookingResponse> createBooking(
-            @Valid @RequestBody BookingDtos.CreateBookingRequest req,
+    // POST /api/bookings/completeBooking
+    @PostMapping("/completeBooking")
+    public ResponseEntity<BookingDtos.BookingResponse> completeBooking(
+            @Valid @RequestBody BookingDtos.CompleteBookingRequest req,
             HttpServletRequest httpRequest) {
 
-        // Capture client IP for geo-resolution in notification-service
         String clientIp = getClientIp(httpRequest);
         req.setClientIp(clientIp);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(bookingService.createBooking(req));
+        return ResponseEntity.status(HttpStatus.CREATED).body(bookingService.completeBooking(req));
     }
 
     // GET /api/bookings/trip/{tripId}

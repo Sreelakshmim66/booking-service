@@ -7,6 +7,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Entity
 @Table(name = "bookings")
@@ -17,18 +18,20 @@ public class Booking {
     @Id
     private String id;
 
+    @Column(nullable = false, unique = true)
+    private String bookingId;   // 16-digit numeric itinerary number
+
     @Column(nullable = false)
     private String tripId;
 
     @Column(nullable = false)
     private String userId;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private BookingType type;
+    @Column(columnDefinition = "TEXT")
+    private String userDetails;
 
-    @Column(length = 2000)
-    private String details;
+    @Column(columnDefinition = "TEXT")
+    private String tripDetails;
 
     @Column(nullable = false)
     private String status = "CONFIRMED";
@@ -41,10 +44,11 @@ public class Booking {
         if (this.id == null) {
             this.id = UUID.randomUUID().toString();
         }
-    }
-
-    public enum BookingType {
-        HOTEL, FLIGHT, ACTIVITY
+        if (this.bookingId == null) {
+            this.bookingId = String.valueOf(
+                ThreadLocalRandom.current().nextLong(1_000_000_000_000_000L, 10_000_000_000_000_000L)
+            );
+        }
     }
 }
 
