@@ -17,12 +17,6 @@ public class BookingDtos {
         @NotBlank
         private String userId;
 
-        @NotNull
-        private Map<String, Object> userDetails;
-
-        @NotNull
-        private Map<String, Object> tripDetails;
-
         private String clientIp;
     }
 
@@ -31,8 +25,6 @@ public class BookingDtos {
         private String bookingId;
         private String tripId;
         private String userId;
-        private Map<String, Object> userDetails;
-        private Map<String, Object> tripDetails;
         private String status;
         private String createdAt;
 
@@ -42,8 +34,6 @@ public class BookingDtos {
             this.userId    = b.getUserId();
             this.status    = b.getStatus();
             this.createdAt = b.getCreatedAt() != null ? b.getCreatedAt().toString() : null;
-            this.userDetails = parseJson(mapper, b.getUserDetails());
-            this.tripDetails = parseJson(mapper, b.getTripDetails());
         }
 
         @SuppressWarnings("unchecked")

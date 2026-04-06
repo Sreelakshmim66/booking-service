@@ -41,13 +41,6 @@ public class BookingService {
         booking.setTripId(req.getTripId());
         booking.setUserId(req.getUserId());
 
-        try {
-            booking.setUserDetails(objectMapper.writeValueAsString(req.getUserDetails()));
-            booking.setTripDetails(objectMapper.writeValueAsString(req.getTripDetails()));
-        } catch (JsonProcessingException e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid userDetails or tripDetails format");
-        }
-
         Booking saved = bookingRepository.save(booking);
         log.info("Booking completed: bookingId={} tripId={}", saved.getBookingId(), saved.getTripId());
 

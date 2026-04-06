@@ -23,12 +23,6 @@ public class Booking {
     @Column(nullable = false)
     private String userId;
 
-    @Column(columnDefinition = "TEXT")
-    private String userDetails;
-
-    @Column(columnDefinition = "TEXT")
-    private String tripDetails;
-
     @Column(nullable = false)
     private String status = "CONFIRMED";
 
